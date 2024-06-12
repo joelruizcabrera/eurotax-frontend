@@ -14,6 +14,9 @@
       <div class="app__sidebar_navigation mt-7">
         <ul>
           <li class="hover:cursor-pointer py-1">
+            <NuxtLink :to="{name: 'home' }" class="flex row items-center gap-3"><HomeIcon class="w-4 h-4"></HomeIcon>{{$t('homeName')}}</NuxtLink>
+          </li>
+          <li class="hover:cursor-pointer py-1">
             <a href="#" class="flex row items-center gap-3"><PencilIcon class="w-4 h-4"></PencilIcon>{{$t('editProfile')}}</a>
           </li>
           <li class="flex row items-center gap-4 py-1">
@@ -34,13 +37,14 @@
 </template>
 
 <script>
-import { PencilIcon, ArrowRightEndOnRectangleIcon, GlobeAltIcon } from '@heroicons/vue/24/solid'
+import { PencilIcon, ArrowRightEndOnRectangleIcon, GlobeAltIcon, HomeIcon } from '@heroicons/vue/24/solid'
 export default {
   name: "AppSidebar",
   components: {
     PencilIcon,
     ArrowRightEndOnRectangleIcon,
-    GlobeAltIcon
+    GlobeAltIcon,
+    HomeIcon
   },
   setup() {
     const {setLocale} = useI18n()
@@ -64,7 +68,7 @@ export default {
       this.setLocale(e.target.value)
     },
     logout() {
-      this.$router.push({path: 'login'})
+      console.log("testr")
     }
   }
 }

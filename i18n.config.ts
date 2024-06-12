@@ -6,6 +6,7 @@ export default defineI18nConfig(() => ({
             hello: 'Hello',
             editProfile: 'Edit Profile',
             welcomeText: 'Welcome to',
+            homeName: 'Home',
             functions: {
                 taxDeclarationHeadline: "Create Tax Declaration",
                 taxRegistrationHeadline: "Questionnaire for tax collection"
@@ -23,6 +24,7 @@ export default defineI18nConfig(() => ({
             hello: 'Hallo',
             editProfile: 'Profil bearbeiten',
             welcomeText: "Willkommen bei",
+            homeName: 'Home',
             functions: {
                 taxDeclarationHeadline: "Steuererklärung erstellen",
                 taxRegistrationHeadline: "Fragebogen zur steuerlichen Erfassung"
@@ -40,6 +42,7 @@ export default defineI18nConfig(() => ({
             hello: "Sveiki",
             editProfile: 'Redaguoti profilį',
             welcomeText: 'Sveiki atvykę į',
+            homeName: 'Home',
             functions: {
                 taxDeclarationHeadline: "Parengti mokesčių deklaraciją",
                 taxRegistrationHeadline: "Klausimynas mokesčių surinkimui"

@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
   css: ['~/assets/css/main.scss'],
+  pages: true,
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -11,7 +12,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     // Disable homepage pre-rendered at build time
-    '/': { prerender: false },
+    '/': { prerender: false }
   },
   i18n: {
     vueI18n: './i18n.config.ts',

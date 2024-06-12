@@ -5,12 +5,12 @@
       <div class="dashboard__functions__item p-4 rounded-2xl relative shadow-1xl hover:shadow-2xl transition-shadow" style="background-image: url('/function_tax_declaration.jpeg')">
         <div class="absolute bottom-0 left-0 p-4 w-full">
           <h4 class="mb-2 text-white">{{$t('functions.taxDeclarationHeadline')}}</h4>
-          <a href="#" class="cursor-pointer">
+          <NuxtLink :to="{name: 'taxdeclaration' }" class="cursor-pointer">
             <button class="uppercase border-2 px-5 py-2 bg-white">{{$t('startText')}}</button>
-          </a>
+          </NuxtLink>
         </div>
       </div>
-      <div class="dashboard__functions__item p-4 rounded-2xl relative shadow-1xl hover:shadow-2xl transition-shadow" style="background-image: url('/function_tax_registration.jpeg')">
+      <div class="dashboard__functions__item p-4 rounded-2xl relative shadow-1xl hover:shadow-2xl transition-shadow opacity-45 cursor-default pointer-events-none" style="background-image: url('/function_tax_registration.jpeg')">
         <div class="absolute bottom-0 left-0 p-4 w-full">
           <h4 class="mb-2 text-white">{{$t('functions.taxRegistrationHeadline')}}</h4>
           <a href="#" class="cursor-pointer">
