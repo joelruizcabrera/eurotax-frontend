@@ -1,8 +1,11 @@
 <template>
-  <div class="app__sidebar bg-black left-0 top-0 h-dvh text-white max-w-xs w-full p-3 relative" v-if="!this.$route.fullPath.includes('login')">
-    <span class="app__sidebar_headline">
-      EuroTax<span>.EU</span>
-    </span>
+  <div class="app__sidebar left-0 top-0 h-dvh text-white max-w-xs w-full p-3 relative" v-if="!this.$route.fullPath.includes('login')">
+    <div class="relative pb-2 mb-2">
+      <span class="app__sidebar_headline">
+        EuroTax<span>.EU</span>
+      </span>
+      <small class="app__sidebar_copy left-0"><br>by <b>kirchner partner GmbH</b></small>
+    </div>
     <div class="app__sidebar_content">
       <div class="app__sidebar_user flex row gap-2.5 items-center">
         <img src="https://i.pravatar.cc/250" alt="" class="rounded-full w-9 h-9">
@@ -23,7 +26,7 @@
           </li>
         </ul>
       </div>
-      <div class="app__sidebar_bottom absolute bottom-0 left-0 bg-black p-3 pb-7 w-full">
+      <div class="app__sidebar_bottom absolute bottom-0 left-0 p-3 py-7 w-full">
         <a @click="logout()" href="#" class="flex row items-center gap-3"><ArrowRightEndOnRectangleIcon class="w-4 h-4"></ArrowRightEndOnRectangleIcon>{{$t('logOut')}}</a>
       </div>
     </div>
@@ -61,7 +64,6 @@ export default {
       this.setLocale(e.target.value)
     },
     logout() {
-      console.log(this.$route)
       this.$router.push({path: 'login'})
     }
   }
@@ -70,6 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 .app__sidebar {
+  background: #62c662;
   &_headline {
     font-size: 2.5rem;
     font-weight: 900;
@@ -78,6 +81,19 @@ export default {
     & > span {
       font-weight: 100;
     }
+  }
+  &_copy {
+    font-size: .525rem;
+    font-weight: 300;
+    letter-spacing: 0;
+    position: absolute;
+    bottom: 8px;
+    & > b  {
+      font-size: .6rem;
+    }
+  }
+  &_bottom {
+    background: #4c9a4c;
   }
 }
 </style>

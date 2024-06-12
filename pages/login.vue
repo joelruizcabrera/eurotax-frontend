@@ -14,7 +14,7 @@ input {
   width: 20rem;
 }
 button {
-  background: black;
+  background: #62c662;
   color: #fff;
   padding: .5rem 1rem;
   width: 6.5rem;

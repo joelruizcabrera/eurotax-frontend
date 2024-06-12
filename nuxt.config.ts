@@ -9,6 +9,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  routeRules: {
+    // Disable homepage pre-rendered at build time
+    '/': { prerender: false },
+  },
   i18n: {
     vueI18n: './i18n.config.ts',
     locales: [

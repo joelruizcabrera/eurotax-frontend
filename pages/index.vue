@@ -6,7 +6,7 @@
         <div class="absolute bottom-0 left-0 p-4 w-full">
           <h4 class="mb-2 text-white">{{$t('functions.taxDeclarationHeadline')}}</h4>
           <a href="#" class="cursor-pointer">
-            <button class="uppercase border-2 px-5 py-2 bg-white font-black border-black">{{$t('startText')}}</button>
+            <button class="uppercase border-2 px-5 py-2 bg-white">{{$t('startText')}}</button>
           </a>
         </div>
       </div>
@@ -14,7 +14,7 @@
         <div class="absolute bottom-0 left-0 p-4 w-full">
           <h4 class="mb-2 text-white">{{$t('functions.taxRegistrationHeadline')}}</h4>
           <a href="#" class="cursor-pointer">
-            <button class="uppercase border-2 px-5 py-2 bg-white font-black border-black">{{$t('startText')}}</button>
+            <button class="uppercase border-2 px-5 py-2 bg-white">{{$t('startText')}}</button>
           </a>
         </div>
       </div>
@@ -39,6 +39,11 @@
         word-break: keep-all;
         width: max-content;
       }
+    }
+    button {
+      border-color: #62c662;
+      color: #62c662;
+      font-weight: 800;
     }
   }
 }
