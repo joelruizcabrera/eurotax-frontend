@@ -11,16 +11,40 @@
           <select :required="field.required" :class="this.types.inputText.classesSelect" :name="field.drupalField" v-if="field.type === 'select'">
             <option :value="item.value" v-for="item in field.selectOptions" :key="item.value">{{item.name}}</option>
           </select>
+          <input type="date" :required="field.required" :name="field.drupalField" :class="this.types.inputText.classesInput" v-if="field.type === 'date'">
           <div v-if="field.desc !== ''"><small class="form-small">{{field.desc}}</small></div>
         </div>
+      </div>
+      <div class="form-row flex flex-wrap flex-row gap-3 my-3 mb-8" v-if="currentPage === 2">
+        <div class="form-group" style="min-width: 20rem" v-for="field in this.fields.pageTwo" :key="field.drupalField">
+          <label :class="this.types.inputText.classesLabel">
+            {{field.name}} <span v-if="field.required">*</span>
+          </label>
+          <input :required="field.required" :name="field.drupalField" :minlength="field.minLength" :maxlength="field.maxLength" :pattern="field.regEx" type="text" :class="this.types.inputText.classesInput" v-if="field.type === 'text'" @keypress="validateInput(field.regEx)">
+          <select :required="field.required" :class="this.types.inputText.classesSelect" :name="field.drupalField" v-if="field.type === 'select'">
+            <option :value="item.value" v-for="item in field.selectOptions" :key="item.value">{{item.name}}</option>
+          </select>
+          <input type="date" :required="field.required" :name="field.drupalField" :class="this.types.inputText.classesInput" v-if="field.type === 'date'">
+          <div v-if="field.desc !== ''"><small class="form-small">{{field.desc}}</small></div>
+        </div>
+      </div>
+      <div class="flex flex-row align-middle pagination">
+        <button @click="handlePages('prev')" type="button" v-if="this.currentPage > 1"><ArrowLeftIcon class="w-6 h-6"></ArrowLeftIcon></button>
+        <button type="button" class="diff">{{this.currentPage}}</button>
+        <button @click="handlePages('next')" type="button"><ArrowRightIcon class="w-6 h-6"></ArrowRightIcon></button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/solid'
 export default {
   name: "TaxDeclaration",
+  components: {
+    ArrowLeftIcon,
+    ArrowRightIcon
+  },
   data() {
     return {
       currentPage: 1,
@@ -114,6 +138,108 @@ export default {
             desc: "Gegebenenfalls Geburtsname",
             regEx: ".{1,72}",
             required: false,
+          },
+          {
+            drupalField: "field_007",
+            name: "Geburtsdatum",
+            type: "date",
+            minLength: 1,
+            maxLength: 8,
+            desc: "",
+            regEx: "\\d\\d\\d\\d\\d\\d\\d\\d",
+            required: true,
+          },
+          {
+            drupalField: "field_008",
+            name: "Religion",
+            type: "select",
+            selectOptions: [
+                {"value":11,"name":"nicht kirchensteuerpflichtig"},{"value":"03","name":"Römisch-katholisch"},{"value":"02","name":"Evangelisch"},{"value":"05","name":"Evangelisch-reformiert"},{"value":20,"name":"Evangelisch-reformierte Kirche Bückeburg"},{"value":21,"name":"Evangleisch-reformierte Kirche Stadthagen"},{"value":"07","name":"Französisch reformiert"},{"value":16,"name":"Freie Religionsgemeinschaft Alzey"},{"value":13,"name":"Freireligiöse Landesgemeinde Baden"},{"value":14,"name":"Freireligiöse Landesgemeinde Pfalz"},{"value":15,"name":"Freireligiöse Gemeinde Mainz"},{"value":17,"name":"Freireligiöse Gemeinde Offenbach"},{"value":25,"name":"Israelitische Religionsgemeinschaft Baden"},{"value":19,"name":"Jüdische Gemeinden im Landesverband Hessen"},{"value":26,"name":"Landesverband der israelitischen Kultusgemeinden in Bayern"},{"value":18,"name":"Jüdische Gemeinde Frankfurt (Hessen)"},{"value":27,"name":"Jüdische Kultusgemeinden Bad Kreuznach und Koblenz"},{"value":28,"name":"Israelitisch (Saarland)"},{"value":12,"name":"Israelitische Religionsgemeinschaft Württemberg"},{"value":29,"name":"Nordrhein-Westfalen: Insraelitisch (jüdisch)"},{"value":24,"name":"Jüdische gemeinde Hamburg"},{"value":"04","name":"Altkatholisch"},{"value":10,"name":"Sonstige"}
+            ],
+            desc: "",
+            required: true,
+          },
+          {
+            drupalField: "field_009",
+            name: "Berufsbezeichnung",
+            desc: "Ausgeübter Beruf",
+            type: "text",
+            minLength: 1,
+            maxLength: 51,
+            regEx: ".{1,51}",
+            required: false,
+          }
+        ],
+        pageTwo: [
+          {
+            drupalField: "field_010",
+            name: "Straße",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 72,
+            regEx: ".{1,72}",
+            required: false,
+          },
+          {
+            drupalField: "field_011",
+            name: "Hausnummer",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 4,
+            regEx: "^(?=.{1,4}$)[0-9]+",
+            required: false,
+          },
+          {
+            drupalField: "field_012",
+            name: "Hausnummerzusatz",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 20,
+            regEx: ".{1,20}",
+            required: false,
+          },
+          {
+            drupalField: "field_013",
+            name: "Adressergänzung",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 46,
+            regEx: ".{1,46}",
+            required: false,
+          },
+          {
+            drupalField: "field_014",
+            name: "Postleitzahl",
+            desc: "",
+            type: "text",
+            minLength: 0,
+            maxLength: 5,
+            regEx: "[0-9]",
+            required: false,
+          },
+          {
+            drupalField: "field_015",
+            name: "Wohnort",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 72,
+            regEx: "^(?=.{1,72}$)\\D*",
+            required: false,
+          },
+          {
+            drupalField: "field_016",
+            name: "Wohnort",
+            desc: "",
+            type: "text",
+            minLength: 1,
+            maxLength: 72,
+            regEx: "^(?=.{1,72}$)\\D*",
+            required: false,
           }
         ]
       }
@@ -132,6 +258,18 @@ export default {
         event.preventDefault();
         return false;
       }
+    },
+    handlePages(way) {
+      switch (way) {
+        case "prev":
+          if (this.currentPage > 1) {
+            this.currentPage = this.currentPage-1
+          }
+          break;
+        case "next":
+          this.currentPage = this.currentPage+1
+          break;
+      }
     }
   }
 }
@@ -144,5 +282,22 @@ export default {
 }
 input {
   min-width: 50%;
+}
+</style>
+
+<style lang="scss" scoped>
+.pagination {
+  gap: 2px;
+  button:not(.diff) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 1.9rem;
+    background: #00dc82;
+  }
+  button.diff {
+    width: 2rem;
+  }
 }
 </style>
